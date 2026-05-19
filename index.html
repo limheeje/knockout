@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Knockout Button</title>
+    <link rel="stylesheet" href="./static/css/common.min.css" />
+    <script src="./js/lib/lodash.min.js"></script>
+    <script src="./js/lib/jquery-1.7.min.js"></script>
+    <script src="./js/lib/knockout-3.5.1.js"></script>
+    <script src="./components/constants/index.js"></script>
+    <script src="./components/helper/DialogManager.js"></script>
+    <script src="./components/BsInputField.js"></script>
+    <script src="./components/BsInputPassword.js"></script>
+    <script src="./components/BsButton.js"></script>
+    <script src="./components/BsCheckbox.js"></script>
+    <script src="./components/BsSelect.js"></script>
+    <script src="./components/BsRadio.js"></script>
+    <script src="./components/BsDialog.js"></script>
+  </head>
+  <body>
+    <div
+      data-bind="component:{
+      name: 'BsDialog',
+      params: {
+        title: 'hi',
+        template: { name: 'person-template', data: {name: 'Frank123123123lin', credits: 250} }
+      }
+    }"
+    ></div>
+
+    <script type="text/html" id="person-template">
+      <h3 data-bind="text: name"></h3>
+      <p>Credits: <span data-bind="text: credits"></span></p>
+    </script>
+
+    <div
+      data-bind="component:{
+      name: 'BsInputPassword',
+      params:{
+        hasFocus: true,
+        value: parentValuePassword
+      }
+    }"
+    ></div>
+    <div data-bind="text: parentValuePassword"></div>
+    localRadioChecked = ko.observable('asdf222')
+    <div
+      data-bind="component:{
+      name: 'BsRadio',
+      params:{
+        hasFocus: true,
+        checked: localRadioChecked,
+        value: 'asdf222',
+        name: 'A1',
+        slot: 'asdf222'
+      }
+    }"
+    ></div>
+    <div
+      data-bind="component:{
+      name: 'BsRadio',
+      params:{
+        checked: localRadioChecked,
+        value: 'asdf222312',
+        name: 'A1',
+        slot: 'asdf222312'
+      }
+    }"
+    ></div>
+    <div data-bind="text: localRadioChecked"></div>
+
+    <div
+      data-bind="component:{
+      name: 'BsSelect',
+      params:{
+        options: localSelectItems,
+        value: localSelectValue,
+      }
+    }"
+    ></div>
+    <div data-bind="text: localSelectValue"></div>
+    <div
+      data-bind="component:{
+      name: 'BsButton',
+      params:{
+        slot: 'asdfasdf1',
+        size: function(size){
+          return size['SMALL']
+        },
+        cssBackground: function(color){
+          return color['Red/04']
+        },
+        cssColor: function(color){
+          return color['Common/White']
+        },
+        cssBorderColor: function(color){
+          return color['Red/02']
+        },
+        $click: function(_, e){
+          console.log(e.target.innerHTML)
+        }
+      }
+    }"
+    ></div>
+    <div
+      data-bind="component:{
+      name: 'BsButton',
+      params:{
+        slot: 'asdfasdf2',
+        size: function(size){
+          return size['SMALL']
+        },
+        cssBackground: function(color){
+          return color['Red/02']
+        },
+        cssColor: function(color){
+          return color['Common/White']
+        },
+        cssBorderColor: function(color){
+          return color['Red/02']
+        },
+        $click: function(_, e){
+          console.log(e.target.innerHTML)
+        }
+      }
+    }"
+    ></div>
+    <div
+      data-bind="component:{
+      name: 'BsButton',
+      params:{
+        slot: 'asdfasdf3',
+        size: function(size){
+          return size['SMALL']
+        },
+        cssBackground: function(color){
+          return color['Red/02']
+        },
+        cssColor: function(color){
+          return color['Common/White']
+        },
+        cssBorderColor: function(color){
+          return color['Red/02']
+        },
+        $click: function(_, e){
+          console.log(e.target.innerHTML)
+        }
+      }
+    }"
+    ></div>
+    <div
+      data-bind="component:{
+      name: 'BsButton',
+      params:{
+        slot: 'asdfasdf4',
+        size: function(size){
+          return size['SMALL']
+        },
+        cssBackground: function(color){
+          return color['Red/02']
+        },
+        cssColor: function(color){
+          return color['Common/White']
+        },
+        cssBorderColor: function(color){
+          return color['Red/02']
+        },
+        $click: function(_, e){
+          console.log(e.target.innerHTML)
+        }
+      }
+    }"
+    ></div>
+    parentValueparentValueparentValueparentValueparentValue
+    <input id="asdfasdf" />
+    <script>
+      asdfasdf = document.getElementById('asdfasdf')
+      asdfasdf.addEventListener('input', (e) => {
+        console.log(e.target.value)
+
+        e.target.value = e.target.value.replace(new RegExp(/[^0-9.-]/g), '')
+      })
+    </script>
+
+    <div
+      data-bind="component:{
+      name: 'BsInputField',
+      params:{
+        value: parentValue,
+        isError: inputValidateError,
+        supportMessage: inputValidateSupportMessage,
+        inputFilter: 'number',
+        $input: function(){
+        }
+      }
+    }"
+    ></div>
+    <div data-bind="text: parentValue"></div>
+    <div
+      data-bind="component:{
+      name: 'BsInputField',
+      params:{
+        value: parentValue2,
+        inputFilter: 'en_special',
+        $input: function(){
+        }
+      }
+    }"
+    ></div>
+    <div data-bind="text: parentValue2"></div>
+    <div
+      data-bind="component:{
+        name: 'BsCheckbox',
+        params: {
+          slot: COMPONENTS_CONFIG.LANGUAGE(),
+          checked: isChecked,
+          $change: function(_,b){
+            if(b.target.checked){
+              appVM.people.push(
+                {firstName: '임', lastName: '희재'},
+                {firstName: '한', lastName: '희재'}
+              )
+              COMPONENTS_CONFIG.LANGUAGE('en')
+            }else{
+              appVM.people.remove(function(item){
+                return item.firstName === '임' || item.firstName === '한'
+              })
+              COMPONENTS_CONFIG.LANGUAGE('ko')
+            }
+          }
+        }
+    }"
+    ></div>
+    <div data-bind="visible: isChecked">체크했니??<span data-bind="text: customCheckboxValue"></span>??체크해야만 보인다</div>
+    <input type="text" data-bind="value: inputValue, valueUpdate: 'input',uniqueName: true" placeholder="버튼 라벨 입력" />
+    <table>
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach: people">
+        <tr>
+          <td data-bind="text: firstName"></td>
+          <td data-bind="text: lastName"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button
+      data-bind="click:function(){
+      getDialog({
+        title: '나나나나나나나1',
+        $clickConfirm: function(vm){
+          alert(111111)
+          console.log(vm)
+          //vm.localOpen(false)
+        }
+      })
+    }"
+    >
+      getDialog
+    </button>
+
+    <input data-bind="value: customCheckboxValue, valueUpdate: 'input'" />
+
+    <!-- 체크 상태에 따라 보이는 영역 -->
+    <div class="hidden-area" data-bind="visible: showArea">체크박스가 선택되어 보여지는 영역입니다!</div>
+
+    <div data-bind="with: dialogManager">
+      <div data-bind="foreach: dialogArray">
+        <div
+          data-bind="component:{
+            name: 'BsDialog',
+            params: {
+              type: function(type){
+                return type.ALERT
+              },
+              isOpen: true,
+              title: title,
+              $clickCancel: $clickCancel,
+              $clickConfirm: $clickConfirm,
+              template: { name: 'person-template', data: {name: 'Frank123123123lin', credits: 250} }
+            }
+          }"
+        ></div>
+      </div>
+    </div>
+    <script>
+      function AppViewModel() {
+        var self = this
+        self.inputValue = ko.observable('저장')
+        self.showArea = ko.observable(false)
+        self.people = ko.observableArray([
+          {firstName: 'Bert', lastName: 'Bertington'},
+          {firstName: 'Charles', lastName: 'Charlesforth'},
+          {firstName: 'Denise', lastName: 'Dentiste'}
+        ])
+        self.customCheckboxValue = ko.observable('밍밍이???🤨🤨🤨')
+        self.isChecked = ko.observable(false)
+        self.parentValue = ko.observable('맞아이거??123')
+        self.parentValuePassword = ko.observable('맞아이거??')
+        self.parentValue2 = ko.observable('123123123맞아이거??🤨🤨🤨')
+        self.inputValidateError = ko.computed(function () {
+          return !self.parentValue()
+        })
+        self.inputValidateSupportMessage = ko.computed(function () {
+          return self.inputValidateError ? '안됩' : ''
+        })
+        // localSelectItems
+        // localSelectValue
+        self.localSelectItems = ko.observableArray(['asdf', 'asdf222'])
+        self.localSelectValue = ko.observable('asdf222')
+        self.localRadioChecked = ko.observable('asdf222')
+        //
+        self.buyer = {name: 'Franklin', credits: 250}
+        self.seller = {name: 'Mario', credits: 5800}
+
+        self.dialogManager = new DialogManager()
+        self.getDialog = function (params) {
+          self.dialogManager.getDialog({
+            title: params.title,
+            $clickCancel: params.$clickCancel,
+            $clickConfirm: params.$clickConfirm
+          })
+        }
+      }
+      var appVM = new AppViewModel()
+      ko.applyBindings(appVM)
+
+      console.log('')
+      console.log('')
+      console.log('////////////////////////////////////////')
+      console.log(appVM)
+      console.log(ko)
+      console.log(ko.mapping)
+      console.log(ko.utils)
+      console.log(ko.utils.extend({a: {a_1: 1}}, {a: {a_1: 2}}))
+      console.log('////////////////////////////////////////')
+      console.log('')
+      console.log('')
+    </script>
+  </body>
+</html>
